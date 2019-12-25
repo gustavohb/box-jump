@@ -1,0 +1,16 @@
+{
+"companyName": "Gustavo Barrionuevo",
+"productName": "Box Jump",
+"productVersion": "0.2",
+"dataUrl": "Box Jump.data.unityweb",
+"wasmCodeUrl": "Box Jump.wasm.code.unityweb",
+"wasmFrameworkUrl": "Box Jump.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Light",
+"backgroundColor": "#FFFFFF",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.3.0f1"
+}
