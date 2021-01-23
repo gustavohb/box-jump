@@ -1407,7 +1407,7 @@ PrefabInstance:
     - target: {fileID: 8556263241225738366, guid: a061407d3c9904110b4d99d6afac29f0,
         type: 3}
       propertyPath: m_Name
-      value: Background Camera (1)
+      value: Background Camera
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a061407d3c9904110b4d99d6afac29f0, type: 3}
@@ -3453,11 +3453,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1485888041756180753, guid: 3667f2c98c85e49a1a612c9dd1246ec5,
-        type: 3}
-      propertyPath: targetFrameRate
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 1485888041756180754, guid: 3667f2c98c85e49a1a612c9dd1246ec5,
         type: 3}
       propertyPath: m_Name
@@ -3969,6 +3964,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   continueButton: {fileID: 492923396}
   fadeDuration: 1
+  _currentLevelIndex: {fileID: 11400000, guid: f2e33d345fc85464e8b7be0bf55ff81b, type: 2}
+  _totalDeaths: {fileID: 11400000, guid: be2d2f5cf75bd4eb893e486d155ab18e, type: 2}
 --- !u!225 &2048318273
 CanvasGroup:
   m_ObjectHideFlags: 0

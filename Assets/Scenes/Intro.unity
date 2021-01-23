@@ -829,6 +829,8 @@ MonoBehaviour:
   m_GroundTargetLocation: {x: 0, y: -8.5, z: 0}
   m_ContinueButton: {fileID: 978226477}
   m_MoveEase: 18
+  _currentLevelIndex: {fileID: 11400000, guid: f2e33d345fc85464e8b7be0bf55ff81b, type: 2}
+  _totalDeaths: {fileID: 11400000, guid: be2d2f5cf75bd4eb893e486d155ab18e, type: 2}
   m_MoveDuration: 1
 --- !u!1 &1349243592
 GameObject:

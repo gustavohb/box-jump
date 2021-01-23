@@ -3,6 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
 using TMPro;
+using ScriptableObjectArchitecture;
 
 public class IntroAnimationController : MonoBehaviour
 {
@@ -36,6 +37,10 @@ public class IntroAnimationController : MonoBehaviour
     [SerializeField]
     private Ease m_MoveEase = Ease.Linear;
 
+    [SerializeField] private IntVariable _currentLevelIndex;
+
+    [SerializeField] private IntVariable _totalDeaths = default;
+
     [Range(0.01f, 10.0f), SerializeField]
     private float m_MoveDuration = 1.0f;
 
@@ -46,7 +51,7 @@ public class IntroAnimationController : MonoBehaviour
     {
        
 
-        if (GameManager.Instance.CurrentLevel > 1)
+        if (_currentLevelIndex.Value > 1)
         {
             m_ContinueButton.SetActive(true);
         }
@@ -60,7 +65,7 @@ public class IntroAnimationController : MonoBehaviour
             m_ContinueButton.SetActive(false);
         }
 
-        m_DeathCounterTMP.text = "DEATHS " + GameManager.Instance.TotalDeaths;
+        m_DeathCounterTMP.text = "DEATHS " + _totalDeaths.Value;
         m_MainMenuCanvasGroup.alpha = 1.0f;
         m_DeathCounterCanvasGroup.alpha = 0.0f;
         m_InstructionsCanvasGroup.alpha = 0.0f;
@@ -101,7 +106,7 @@ public class IntroAnimationController : MonoBehaviour
 
         }
 
-        if (GameManager.Instance.CurrentLevel == 1)
+        if (_currentLevelIndex == 1)
         {
             StartCoroutine(FadeInInstructionsText());
         }
@@ -214,7 +219,7 @@ public class IntroAnimationController : MonoBehaviour
 
     void LoadNextScene()
     {
-        int currentLevel = GameManager.Instance.CurrentLevel;
+        int currentLevel = _currentLevelIndex;
         if (currentLevel != 0)
         {
             SceneManager.LoadScene("Level " + currentLevel);

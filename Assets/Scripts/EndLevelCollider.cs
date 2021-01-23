@@ -1,24 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using ScriptableObjectArchitecture;
 
 public class EndLevelCollider : MonoBehaviour
 {
-    public int nextLevelNumber = 1;
+    [SerializeField] private bool _isLastLevel = false;
 
+    [SerializeField] private IntVariable _currentLevelIndex = default;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Character"))
         {
-            if (nextLevelNumber != 0)
+            if (!_isLastLevel)
             {
-                GameManager.Instance.CurrentLevel = nextLevelNumber;
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Level " + nextLevelNumber.ToString());
+                _currentLevelIndex.Value++;
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Level " + _currentLevelIndex.ToString());
             }
             else
             {
-                GameManager.Instance.CurrentLevel = 1;
+                _currentLevelIndex.Value = 1;
                 UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
             }   
         }

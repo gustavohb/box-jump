@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using ScriptableObjectArchitecture;
 
 [RequireComponent (typeof(CanvasGroup))]
 public class MainMenu : MonoBehaviour
@@ -12,11 +13,15 @@ public class MainMenu : MonoBehaviour
 
     public float fadeDuration = 1.0f;
 
+    [SerializeField] private IntVariable _currentLevelIndex = default;
+
+    [SerializeField] private IntVariable _totalDeaths = default;
+
     private void Start()
     {
         GameTime.isPaused = false;
 
-        if (GameManager.Instance.CurrentLevel > 1)
+        if (_currentLevelIndex.Value > 1)
         {
             continueButton.SetActive(true);
             GameManager.Instance.continueWasEnabled = true;
@@ -24,7 +29,7 @@ public class MainMenu : MonoBehaviour
         else
         {
             continueButton.SetActive(false);
-            GameManager.Instance.TotalDeaths = 0;
+            _totalDeaths.Value = 0;
         }
 
     }
@@ -61,8 +66,8 @@ public class MainMenu : MonoBehaviour
 
     public void NewGame()
     {
-        GameManager.Instance.TotalDeaths = 0;
-        GameManager.Instance.CurrentLevel = 1;
+        _totalDeaths.Value = 0;
+        _currentLevelIndex.Value = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

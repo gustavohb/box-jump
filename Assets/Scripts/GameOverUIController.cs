@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using ScriptableObjectArchitecture;
 
 public class GameOverUIController : MonoBehaviour
 {
@@ -16,11 +16,15 @@ public class GameOverUIController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI m_TotalDeathsText;
 
+    [SerializeField] private IntVariable _currentLevelIndex = default;
+
+    [SerializeField] private IntVariable _totalDeaths = default;
+
     void Start()
     {
         m_GameOverUICanvasGroup.alpha = 0;
        
-        m_TotalDeathsText.text = "TOTAL DEATHS: " + GameManager.Instance.TotalDeaths;
+        m_TotalDeathsText.text = "TOTAL DEATHS: " + _totalDeaths.Value;
 
         StartCoroutine(FadeGameOverUI());
     }
@@ -29,8 +33,8 @@ public class GameOverUIController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            GameManager.Instance.CurrentLevel = 1;
-            GameManager.Instance.TotalDeaths = 0;
+            _currentLevelIndex.Value = 1;
+            _totalDeaths.Value = 0;
             SceneManager.LoadScene("Menu");
         }
     }

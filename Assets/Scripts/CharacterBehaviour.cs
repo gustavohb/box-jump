@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using ScriptableObjectArchitecture;
 
 [RequireComponent(typeof(CharacterController2D))]
 public class CharacterBehaviour : MonoBehaviour
@@ -18,6 +19,8 @@ public class CharacterBehaviour : MonoBehaviour
     Vector3 m_Velocity;
     bool m_JumpPressed;
     CharacterController2D m_Controller;
+
+    [SerializeField] private IntVariable _totalDeaths;
 
     private void Start()
     {
@@ -76,6 +79,6 @@ public class CharacterBehaviour : MonoBehaviour
         }
         m_Controller.ResetToStartPosition();
         m_Velocity.y = 0;
-        GameManager.Instance.IncrementTotalDeaths();
+        _totalDeaths.Value++;
     }
 }

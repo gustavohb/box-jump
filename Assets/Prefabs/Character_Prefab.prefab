@@ -90,7 +90,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
@@ -273,6 +273,7 @@ MonoBehaviour:
   pauseCheck: 1
   jumpSfx: {fileID: 8300000, guid: 0af80f15803eb4209bca8eaab3f317ec, type: 3}
   deathSfx: {fileID: 8300000, guid: 2459b1f2b6b6e4a89b7e55b9c97f73d9, type: 3}
+  _totalDeaths: {fileID: 11400000, guid: be2d2f5cf75bd4eb893e486d155ab18e, type: 2}
 --- !u!50 &8407053756767593949
 Rigidbody2D:
   serializedVersion: 4

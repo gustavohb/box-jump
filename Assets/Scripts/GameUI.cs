@@ -2,7 +2,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using ScriptableObjectArchitecture;
 
 public class GameUI : MonoBehaviour
 {
@@ -28,6 +28,8 @@ public class GameUI : MonoBehaviour
     public float delayTime = 1.0f;
     public float bannerSpeed = 1.5f;
 
+    [SerializeField] private IntVariable _totalDeaths = default;
+
     private void Start()
     {
 
@@ -43,7 +45,7 @@ public class GameUI : MonoBehaviour
 
     private void Update()
     {
-        totalDeathsText.SetText("DEATHS " + GameManager.Instance.TotalDeaths);
+        totalDeathsText.SetText("DEATHS " + _totalDeaths.Value);
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GameManager.Instance.Character != null)

@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+using ScriptableObjectArchitecture;
 
 public static class GameTime
 {
@@ -21,37 +19,14 @@ public class GameManager : MonoBehaviour
 
     public bool continueWasEnabled { get; set; }
 
-    public int TotalDeaths {
-        get
-        {
-            return totalDeaths;
-        }
-        set
-        {
-            totalDeaths = value;
-            PlayerPrefs.SetInt("totalDeaths", totalDeaths);
-        }
-    }
-
+    [SerializeField] private IntVariable _totalDeaths = default;
+    
     private float m_SavedTimeScale = 1.0f;
 
     public CharacterBehaviour Character { get; set; }
 
-    public int CurrentLevel
-    {
-        get
-        {
-            return currentLevel;
-        }
-        set
-        {
-            currentLevel = value;
-            PlayerPrefs.SetInt("currentLevel", currentLevel);
-        }
-    }
+    [SerializeField] private IntVariable _currentLevelIndex = default;
 
-    private int currentLevel;
-    private int totalDeaths;
 
     public static GameManager Instance
     {
@@ -104,7 +79,7 @@ public class GameManager : MonoBehaviour
 
     public void Reset()
     {
-        totalDeaths = 0;
+        _totalDeaths.Value = 0;
     }
 
     private void Awake()
@@ -112,12 +87,12 @@ public class GameManager : MonoBehaviour
         if (s_Instance == null)
         {
             s_Instance = this;
-            currentLevel = PlayerPrefs.GetInt("currentLevel");
-            if (currentLevel == 0)
+            _currentLevelIndex.Value = PlayerPrefs.GetInt("currentLevel");
+            if (_currentLevelIndex.Value == 0)
             {
-                currentLevel = 1;
+                _currentLevelIndex.Value = 1;
             }
-            totalDeaths = PlayerPrefs.GetInt("totalDeaths");
+            _totalDeaths.Value = PlayerPrefs.GetInt("totalDeaths");
 
             Application.targetFrameRate = targetFrameRate;
 
@@ -132,10 +107,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void IncrementTotalDeaths()
+    private void OnApplicationQuit()
     {
-        totalDeaths++;
-        PlayerPrefs.SetInt("totalDeaths", totalDeaths);
+        PlayerPrefs.SetInt("totalDeaths", _totalDeaths.Value);
+        PlayerPrefs.SetInt("currentLevel", _currentLevelIndex.Value);
+        PlayerPrefs.Save();
     }
-
 }
