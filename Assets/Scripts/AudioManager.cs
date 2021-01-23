@@ -7,10 +7,10 @@ public class AudioManager : MonoBehaviour
     private static AudioManager s_Instance;
 
     public enum AudioChannel { Master, Sfx, Music };
-    
-    public float masterVolumePercent { get; private set; }
-    public float sfxVolumePercent { get; private set; }
-    public float musicVolumePercent { get; private set; }
+
+    public float masterVolumePercent;// { get; private set; }
+    public float sfxVolumePercent;// { get; private set; }
+    public float musicVolumePercent;// { get; private set; }
 
     public bool MusicOn { get; private set; }
     public bool SfxOn { get; private set; }

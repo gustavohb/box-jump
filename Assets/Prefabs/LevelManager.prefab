@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPrefab: {fileID: 8407053756767593950, guid: fb154b50f40b2476c8ba62e751f28e66,
     type: 3}
-  characterStartPoint: {x: -16.15, y: -4.43, z: 0}
+  characterStartPoint: {x: -18, y: -4.43, z: 0}
   characterInstantiateDelay: 3
