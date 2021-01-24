@@ -26,6 +26,8 @@ public class LevelManager : MonoBehaviour
 
     private GameObject _currentLevelGO;
 
+    
+
     private void Awake()
     {
         Instance = this;
@@ -33,29 +35,35 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        //Invoke("InstantiateCharacter", characterInstantiateDelay);
         InstantiateCharacter();
         StartNextLevel();
         
         _onLevelFinishedEvent.AddListener(StartNextLevel);
-
     }
 
 
     private void StartNextLevel()
     {
-        if (_currentLevelGO != null)
+        if(_currentLevelIndex >= _levels.Length)
         {
-            Destroy(_currentLevelGO);
+            _currentLevelIndex.Value = 0;
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
         }
-        _currentLevelGO = Instantiate(_levels[_currentLevelIndex.Value]);
-        if (_levelSpawnPoint != null)
+        else
         {
-            _currentLevelGO.transform.position = _levelSpawnPoint.position;
-        }
-        _onNewLevelEvent.Raise("LEVEL " + (_currentLevelIndex+1));
+            if (_currentLevelGO != null)
+            {
+                Destroy(_currentLevelGO);
+            }
+            _currentLevelGO = Instantiate(_levels[_currentLevelIndex.Value]);
+            if (_levelSpawnPoint != null)
+            {
+                _currentLevelGO.transform.position = _levelSpawnPoint.position;
+            }
+            _onNewLevelEvent.Raise("LEVEL " + (_currentLevelIndex + 1));
 
-        ResetCharacterPosition();
+            ResetCharacterPosition();
+        }  
     }
 
 

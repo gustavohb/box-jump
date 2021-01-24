@@ -147,7 +147,7 @@ public class GameUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        _onNewLevelGameEvent.RemoveListener(ShowNewLevelBanner);
+        _onNewLevelGameEvent?.RemoveListener(ShowNewLevelBanner);
     }
 
 }

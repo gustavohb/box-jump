@@ -605,6 +605,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8801803549142662083, guid: 7dbc31a2ab8324fa0838c5702d8aae70,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -64.99988
+      objectReference: {fileID: 0}
     - target: {fileID: 9010693016856418354, guid: 7dbc31a2ab8324fa0838c5702d8aae70,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -793,6 +798,8 @@ MonoBehaviour:
   m_GameOverUICanvasGroup: {fileID: 600751110}
   m_FadeSpeed: 2.5
   m_TotalDeathsText: {fileID: 223509308}
+  _currentLevelIndex: {fileID: 11400000, guid: f2e33d345fc85464e8b7be0bf55ff81b, type: 2}
+  _totalDeaths: {fileID: 11400000, guid: be2d2f5cf75bd4eb893e486d155ab18e, type: 2}
 --- !u!1 &1742997117
 GameObject:
   m_ObjectHideFlags: 0
