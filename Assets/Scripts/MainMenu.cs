@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
     {
         GameTime.isPaused = false;
 
-        if (_currentLevelIndex.Value > 1)
+        if (_currentLevelIndex.Value > 0)
         {
             continueButton.SetActive(true);
             GameManager.Instance.continueWasEnabled = true;
@@ -67,7 +67,7 @@ public class MainMenu : MonoBehaviour
     public void NewGame()
     {
         _totalDeaths.Value = 0;
-        _currentLevelIndex.Value = 1;
+        _currentLevelIndex.Value = 0;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

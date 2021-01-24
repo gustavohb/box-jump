@@ -88,10 +88,7 @@ public class GameManager : MonoBehaviour
         {
             s_Instance = this;
             _currentLevelIndex.Value = PlayerPrefs.GetInt("currentLevel");
-            if (_currentLevelIndex.Value == 0)
-            {
-                _currentLevelIndex.Value = 1;
-            }
+           
             _totalDeaths.Value = PlayerPrefs.GetInt("totalDeaths");
 
             Application.targetFrameRate = targetFrameRate;

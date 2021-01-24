@@ -1409,6 +1409,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 8556263242246188289, guid: a061407d3c9904110b4d99d6afac29f0,
+        type: 3}
+      propertyPath: orthographic size
+      value: 0.28125
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a061407d3c9904110b4d99d6afac29f0, type: 3}
 --- !u!1 &768060795
@@ -2026,6 +2031,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013238737}
   m_CullTransparentMesh: 0
+--- !u!1 &1064091564 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8556263242246188303, guid: a061407d3c9904110b4d99d6afac29f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 726713742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &1064091565 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 8556263242246188289, guid: a061407d3c9904110b4d99d6afac29f0,
+    type: 3}
+  m_PrefabInstance: {fileID: 726713742}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1064091566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1064091564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 991124117c7df45ee87ecfadc0e895fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wireColor: {r: 1, g: 1, b: 1, a: 1}
+  UnitsSize: 1
+  constraint: 0
+  camera: {fileID: 1064091565}
 --- !u!1 &1089575278
 GameObject:
   m_ObjectHideFlags: 0

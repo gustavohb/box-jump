@@ -37,7 +37,7 @@ public class IntroAnimationController : MonoBehaviour
     [SerializeField]
     private Ease m_MoveEase = Ease.Linear;
 
-    [SerializeField] private IntVariable _currentLevelIndex;
+    [SerializeField] private IntVariable _currentLevelIndex = default;
 
     [SerializeField] private IntVariable _totalDeaths = default;
 
@@ -51,7 +51,7 @@ public class IntroAnimationController : MonoBehaviour
     {
        
 
-        if (_currentLevelIndex.Value > 1)
+        if (_currentLevelIndex.Value >= 1)
         {
             m_ContinueButton.SetActive(true);
         }
@@ -106,7 +106,7 @@ public class IntroAnimationController : MonoBehaviour
 
         }
 
-        if (_currentLevelIndex == 1)
+        if (_currentLevelIndex == 0)
         {
             StartCoroutine(FadeInInstructionsText());
         }
@@ -219,7 +219,10 @@ public class IntroAnimationController : MonoBehaviour
 
     void LoadNextScene()
     {
+        SceneManager.LoadScene("Gameplay");
+        /*
         int currentLevel = _currentLevelIndex;
+
         if (currentLevel != 0)
         {
             SceneManager.LoadScene("Level " + currentLevel);
@@ -228,6 +231,6 @@ public class IntroAnimationController : MonoBehaviour
         {
             SceneManager.LoadScene("Level 1");
         }
-           
+          */
     }
 }

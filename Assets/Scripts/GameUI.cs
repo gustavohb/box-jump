@@ -23,23 +23,33 @@ public class GameUI : MonoBehaviour
 
     public GameObject pauseMenuUI;
 
-    private bool m_LevelBannerFaded = true;
+    //private bool m_LevelBannerFaded = true;
 
     public float delayTime = 1.0f;
     public float bannerSpeed = 1.5f;
 
     [SerializeField] private IntVariable _totalDeaths = default;
 
+    [SerializeField] private StringGameEvent _onNewLevelGameEvent;
+
     private void Start()
     {
 
-        string sceneName = SceneManager.GetActiveScene().name;
+        //string sceneName = SceneManager.GetActiveScene().name;
 
-        newLevelTitle.text = sceneName.ToUpper();
+        //newLevelTitle.text = sceneName.ToUpper();
+
+        _onNewLevelGameEvent.AddListener(ShowNewLevelBanner);
+
+    }
+
+    private void ShowNewLevelBanner(string levelText)
+    {
         if (fadeInSfx != null && AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySound(fadeInSfx, Vector3.zero, fadeSfxVolume);
         }
+        newLevelTitle.text = levelText;
         StartCoroutine(AnimateNewLevelBanner());
     }
 
@@ -133,6 +143,11 @@ public class GameUI : MonoBehaviour
 
         }
 
+    }
+
+    private void OnDestroy()
+    {
+        _onNewLevelGameEvent.RemoveListener(ShowNewLevelBanner);
     }
 
 }

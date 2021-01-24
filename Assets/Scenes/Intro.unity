@@ -188,6 +188,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 8556263242246188289, guid: a061407d3c9904110b4d99d6afac29f0,
+        type: 3}
+      propertyPath: orthographic size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8556263242246188290, guid: a061407d3c9904110b4d99d6afac29f0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a061407d3c9904110b4d99d6afac29f0, type: 3}
 --- !u!1 &693225597
@@ -1528,7 +1538,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -39, y: 31}
+  m_AnchoredPosition: {x: -39.000244, y: 31}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &1752839916
@@ -2005,7 +2015,7 @@ PrefabInstance:
     - target: {fileID: 7004984425132982039, guid: e83cd648426924096aed46f4b55db88d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -11.08
+      value: -13.64
       objectReference: {fileID: 0}
     - target: {fileID: 7004984425132982039, guid: e83cd648426924096aed46f4b55db88d,
         type: 3}
