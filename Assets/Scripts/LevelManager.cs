@@ -3,16 +3,15 @@ using ScriptableObjectArchitecture;
 
 public class LevelManager : MonoBehaviour
 {
-
-    public static LevelManager Instance { get; private set; }
-
-    public CharacterBehaviour characterPrefab;
+    [SerializeField] private CharacterBehaviour _characterPrefab;
 
     [SerializeField] private Transform _characterStartPoint;
 
-    public int characterInstantiateDelay = 3;
+    [SerializeField] private float _startDelay = 3;
 
-    private CharacterBehaviour m_Character;
+    [SerializeField] private float _characterSpawnDelay = 3.5f;
+
+    private CharacterBehaviour _character;
 
     [SerializeField] private GameObject[] _levels;
 
@@ -26,18 +25,10 @@ public class LevelManager : MonoBehaviour
 
     private GameObject _currentLevelGO;
 
-    
-
-    private void Awake()
-    {
-        Instance = this;
-    }
-
     private void Start()
     {
-        InstantiateCharacter();
-        StartNextLevel();
-        
+        Invoke("StartNextLevel", _startDelay);
+        Invoke("InstantiateCharacter", _characterSpawnDelay);
         _onLevelFinishedEvent.AddListener(StartNextLevel);
     }
 
@@ -70,17 +61,20 @@ public class LevelManager : MonoBehaviour
     
     private void InstantiateCharacter()
     {
-        if (characterPrefab != null)
+        if (_characterPrefab != null)
         {
-            m_Character = Instantiate<CharacterBehaviour>(characterPrefab, _characterStartPoint.position, Quaternion.identity);
-            GameManager.Instance.Character = m_Character;
+            _character = Instantiate<CharacterBehaviour>(_characterPrefab, _characterStartPoint.position, Quaternion.identity);
+            GameManager.Instance.Character = _character;
 
         }
     }
 
     private void ResetCharacterPosition()
     {
-        m_Character.transform.position = _characterStartPoint.position;
+        if (_character != null && _characterStartPoint != null)
+        {
+            _character.transform.position = _characterStartPoint.position;
+        }
     }
 
     private void OnDestroy()

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 using ScriptableObjectArchitecture;
+using DG.Tweening;
 
 [RequireComponent (typeof(CanvasGroup))]
 public class MainMenu : MonoBehaviour
@@ -9,9 +9,9 @@ public class MainMenu : MonoBehaviour
 
     public GameObject continueButton;
 
-    private CanvasGroup m_MainMenuCanvasGroup;
+    private CanvasGroup _mainMenuCanvasGroup;
 
-    public float fadeDuration = 1.0f;
+    [SerializeField] private float _fadeDuration = 1.0f;
 
     [SerializeField] private IntVariable _currentLevelIndex = default;
 
@@ -36,9 +36,9 @@ public class MainMenu : MonoBehaviour
 
     private void OnEnable()
     {
-        m_MainMenuCanvasGroup = GetComponent<CanvasGroup>();
-        m_MainMenuCanvasGroup.alpha = 0;
-        StartCoroutine(Fade(fadeDuration));
+        _mainMenuCanvasGroup = GetComponent<CanvasGroup>();
+        _mainMenuCanvasGroup.alpha = 0;
+        FadeIn();
     }
 
     
@@ -52,30 +52,33 @@ public class MainMenu : MonoBehaviour
 #endif
     }
 
-    private IEnumerator Fade(float time)
+    private void FadeIn()
     {
-        float speed = 1 / time;
-        float percent = 0;
-        while (percent <= 1)
-        {
-            percent += Time.deltaTime * speed;
-            m_MainMenuCanvasGroup.alpha = percent;
-            yield return null;
-        }
+        _mainMenuCanvasGroup.DOFade(1.0f, _fadeDuration);
+    }
+
+    private void FadeOut()
+    {
+        _mainMenuCanvasGroup.DOFade(0.0f, _fadeDuration);
     }
 
     public void NewGame()
     {
-        _totalDeaths.Value = 0;
         _currentLevelIndex.Value = 0;
+        _totalDeaths.Value = 0;
+        FadeOut();
+        Invoke("LoadGame", _fadeDuration);
+    }
+
+    private void LoadGame()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-
-
     public void ContinueGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        FadeOut();
+        Invoke("LoadGame", _fadeDuration);
     }
 
     public void QuitGame()

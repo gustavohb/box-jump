@@ -75,7 +75,7 @@ public class MusicManager : MonoBehaviour
         {
             clipToPlay = menuTheme;
         }
-        else if (m_SceneName == "Intro")
+        else if (m_SceneName == "Gameplay")
         {
             clipToPlay = mainTheme;
         }
