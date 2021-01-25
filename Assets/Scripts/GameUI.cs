@@ -7,7 +7,11 @@ using DG.Tweening;
 
 public class GameUI : MonoBehaviour
 {
+    [Header("UI Display Info")]
     [SerializeField] private TextMeshProUGUI _totalDeathsText;
+    [SerializeField] private CanvasGroup _totalDeathsCanvasGroup;
+    
+    [Header("New Level Banner Settings")]
     [SerializeField] private RectTransform _newLevelBanner;
     [SerializeField] private TextMeshProUGUI _newLevelTitle;
     [SerializeField] private float _newLevelTitleStartYPosition = -550.0f;
@@ -17,19 +21,33 @@ public class GameUI : MonoBehaviour
     [SerializeField] private AudioClip _fadeInSfx;
     [SerializeField] private AudioClip _fadeOutSfx;
     [SerializeField] private float _fadeSfxVolume = 0.3f;
-    [SerializeField] private GameObject _pauseMenuUI;
     [SerializeField] private float _delayTime = 1.0f;
     [SerializeField] private float _bannerSpeed = 2.5f;
-    [SerializeField] private IntVariable _totalDeaths = default;
-    [SerializeField] private IntVariable _currentLevelIndex = default;
-    [SerializeField] private StringGameEvent _onNewLevelGameEvent;
 
+    [Header("Pause Menu Reference")]
+    [SerializeField] private GameObject _pauseMenuUI;
+
+    [Header("Game Over")]
+    [SerializeField] private GameObject _gameOverScreen;
+
+    [Header("Variables")]
+    [SerializeField] private IntVariable _currentLevelIndex = default;
+    [SerializeField] private IntVariable _totalDeaths = default;
+
+    [Header("Events")]
+    [SerializeField] private StringGameEvent _onNewLevelGameEvent;
+    [SerializeField] private GameEvent _onGameFinishedEvent;
+
+    [Header("Instruction Message Settings")]
     [SerializeField] private CanvasGroup _instructionMessageCanvasGroup = default;
     [SerializeField] private float _instructionMessageDuration = 2.0f;
 
     private void Start()
     {
         _onNewLevelGameEvent.AddListener(ShowNewLevelBanner);
+        _onGameFinishedEvent.AddListener(ShowGameOverScreen);
+        _onGameFinishedEvent.AddListener(HideDeathsCounter);
+
         _instructionMessageCanvasGroup.alpha = 0;
         if (_currentLevelIndex.Value == 0)
         {
@@ -51,6 +69,16 @@ public class GameUI : MonoBehaviour
 
 
         StartCoroutine(AnimateNewLevelBanner());
+    }
+
+    private void ShowGameOverScreen()
+    {
+        _gameOverScreen?.SetActive(true);
+    }
+
+    private void HideDeathsCounter()
+    {
+        _totalDeathsCanvasGroup.DOFade(0.0f, _fadeDuration);
     }
 
     private void Update()
@@ -155,6 +183,8 @@ public class GameUI : MonoBehaviour
     private void OnDestroy()
     {
         _onNewLevelGameEvent?.RemoveListener(ShowNewLevelBanner);
+        _onGameFinishedEvent?.RemoveListener(ShowGameOverScreen);
+        _onGameFinishedEvent?.RemoveListener(HideDeathsCounter);
     }
 
 }

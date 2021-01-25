@@ -23,8 +23,11 @@ public class LevelManager : MonoBehaviour
 
     [SerializeField] private IntVariable _currentLevelIndex = default;
 
+    [SerializeField] private GameEvent _onGameFinishedEvent = default;
+
     private GameObject _currentLevelGO;
 
+   
     private void Start()
     {
         Invoke("StartNextLevel", _startDelay);
@@ -35,17 +38,17 @@ public class LevelManager : MonoBehaviour
 
     private void StartNextLevel()
     {
-        if(_currentLevelIndex >= _levels.Length)
+        if (_currentLevelGO != null)
+        {
+            Destroy(_currentLevelGO);
+        }
+        if (_currentLevelIndex >= _levels.Length)
         {
             _currentLevelIndex.Value = 0;
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+            _onGameFinishedEvent.Raise();
         }
         else
         {
-            if (_currentLevelGO != null)
-            {
-                Destroy(_currentLevelGO);
-            }
             _currentLevelGO = Instantiate(_levels[_currentLevelIndex.Value]);
             if (_levelSpawnPoint != null)
             {

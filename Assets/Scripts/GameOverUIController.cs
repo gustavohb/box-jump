@@ -33,8 +33,6 @@ public class GameOverUIController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            //_currentLevelIndex.Value = 0;
-            //_totalDeaths.Value = 0;
             SceneManager.LoadScene("Menu");
         }
     }
