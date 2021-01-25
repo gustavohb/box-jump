@@ -31,7 +31,6 @@ public class MainMenu : MonoBehaviour
             continueButton.SetActive(false);
             _totalDeaths.Value = 0;
         }
-
     }
 
     private void OnEnable()

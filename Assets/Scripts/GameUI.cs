@@ -53,10 +53,6 @@ public class GameUI : MonoBehaviour
         {
             StartCoroutine(ShowInstructionMessageRoutine());
         }
-        else
-        {
-
-        }
     }
 
     private void ShowNewLevelBanner(string levelText)

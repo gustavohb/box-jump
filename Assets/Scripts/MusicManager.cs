@@ -4,86 +4,90 @@ using UnityEngine.SceneManagement;
 public class MusicManager : MonoBehaviour
 {
 
-    public AudioClip mainTheme;
-    public AudioClip menuTheme;
+    [SerializeField] private AudioClip _mainMenuTheme;
+    [SerializeField] private AudioClip _gameplayTheme;
 
-    private static MusicManager s_Instance;
+    private static MusicManager _instance;
 
     public static MusicManager Instance
     {
         get
         {
-            if (s_Instance == null)
+            if (_instance == null)
             {
-                s_Instance = FindObjectOfType<MusicManager>();
-                if (s_Instance == null)
+                _instance = FindObjectOfType<MusicManager>();
+                if (_instance == null)
                 {
                     GameObject obj = new GameObject();
-                    s_Instance = obj.AddComponent<MusicManager>();
+                    _instance = obj.AddComponent<MusicManager>();
                 }
             }
 
-            return s_Instance;
+            return _instance;
         }
     }
 
 
+    [SerializeField] private float _musicFadeDuration = 0.4f;
 
-    [SerializeField]
-    private float m_MusicFadeDuration = 0.4f;
+    private float _invokeDelay = 0.2f;
 
-    private float m_InvokeDelay = 0.2f;
-    private string m_SceneName;
+    private string _sceneName;
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        string newSceneName = SceneManager.GetActiveScene().name;
+        if (newSceneName != _sceneName)
+        {
+            _sceneName = newSceneName;
+            Invoke("PlayMusic", _invokeDelay);
+        }
+    }
 
     private void Awake()
     {
-        if (s_Instance == null)
+        if (_instance == null)
         {
-            s_Instance = this;
+            _instance = this;
 
             DontDestroyOnLoad(transform.gameObject);
         }
         else
         {
-            if (this != s_Instance)
+            if (this != _instance)
             {
                 Destroy(this.gameObject);
             }
         }
     }
 
-    void Start()
-    {
-        OnLevelWasLoaded();
-    }
-
-    public void OnLevelWasLoaded()
-    {
-        string newSceneName = SceneManager.GetActiveScene().name;
-        if (newSceneName != m_SceneName)
-        {
-            m_SceneName = newSceneName;
-            Invoke("PlayMusic", m_InvokeDelay);
-        }
-    }
-
     public void PlayMusic()
     {
+        string newSceneName = SceneManager.GetActiveScene().name;
         AudioClip clipToPlay = null;
 
-        if (m_SceneName == "Menu")
+        if (newSceneName == "Menu")
         {
-            clipToPlay = menuTheme;
+            clipToPlay = _mainMenuTheme;
         }
-        else if (m_SceneName == "Gameplay")
+        else if (newSceneName == "Gameplay")
         {
-            clipToPlay = mainTheme;
+            clipToPlay = _gameplayTheme;
         }
 
         if (clipToPlay != null)
         {
-            AudioManager.Instance.PlayMusic(clipToPlay, m_MusicFadeDuration);
-            Invoke("PlayMusic", clipToPlay.length);
+            AudioManager.Instance.PlayMusic(clipToPlay, _musicFadeDuration);
         }
 
     }
