@@ -10,6 +10,8 @@ public class TweenData
     public TweenType tweenType;
     public Transform objectToTween;
     public Vector3 positionOffset;
+    public bool useTargetPosition = false;
+    public Vector3 targetPosition;
     public float duration = 1f;
     public Vector3 targetRotation;
     public float targetScale = 1f;
@@ -23,8 +25,16 @@ public class TweenData
         switch (tweenType)
         {
             case TweenType.Move:
-                Vector3 targetPosition = objectToTween.transform.position + positionOffset;
-                tween = objectToTween.DOMove(targetPosition, duration).SetEase(ease);
+                if (!useTargetPosition)
+                {
+                    Vector3 newTargetPosition = objectToTween.transform.position + positionOffset;
+                    tween = objectToTween.DOMove(newTargetPosition, duration).SetEase(ease);
+                }
+                else
+                {
+                    tween = objectToTween.DOMove(targetPosition, duration).SetEase(ease);
+                }
+                
                 break;
             case TweenType.Rotate:
                 tween = objectToTween.DORotate(targetRotation, duration).SetEase(ease);
