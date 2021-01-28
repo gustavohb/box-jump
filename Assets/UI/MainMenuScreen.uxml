@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement name="screen" style="background-image: none; width: 100%; height: 100%; -unity-background-scale-mode: scale-to-fit; justify-content: flex-start; position: relative; left: 0; right: 0; top: 0; bottom: 0;">
+        <Style src="MainMenuSS.uss" />
+        <ui:VisualElement name="menu-column" style="align-items: stretch; justify-content: flex-end; left: 0; top: 0; right: 0; width: 70%; height: 100%; margin-left: 15%;">
+            <ui:VisualElement name="menu" style="margin-bottom: auto; height: 100%; margin-top: 15%;">
+                <ui:VisualElement name="menu-title-image" style="background-image: url(&apos;/Assets/Images/Logo.png&apos;); width: 100%; height: 30%; -unity-background-scale-mode: scale-to-fit;" />
+                <ui:Button text="CONTINUE" name="continue-button" class="menu-button" style="height: 10%; background-color: rgba(0, 0, 0, 0); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); font-size: 200%; width: 100%;" />
+                <ui:Button text="NEW GAME" name="new-game-button" class="menu-button" style="height: 10%; background-color: rgba(0, 0, 0, 0); font-size: 200%; width: 100%;" />
+                <ui:Button text="SETTINGS" name="settings-button" class="menu-button" style="height: 10%; background-color: rgba(0, 0, 0, 0); font-size: 200%; width: 100%;" />
+                <ui:Button text="CREDITS" name="credits-button" class="menu-button" style="height: 10%; background-color: rgba(0, 0, 0, 0); font-size: 200%; width: 100%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:VisualElement style="background-image: url(&apos;/Assets/Images/LogoIcon.png&apos;); width: 900px; height: 2048px; -unity-background-scale-mode: scale-to-fit;" />
+</ui:UXML>
