@@ -8,7 +8,8 @@ In this game the player controls a box that jumps to avoid obstacles.
 
 Touch the screen or press space to let box jump over intactly. If you failed, you can always retry to challenge present level!
 
-You can play the game by downloading in the release page the build corresponding to your OS (It's available [Windows](https://github.com/gustavohb/box-jump/releases/download/0.1/Box.Jump.0.1.Windows.zip), [Android](https://github.com/gustavohb/box-jump/releases/download/0.1/Box.Jump.0.1.Android.apk), and [MacOS](https://github.com/gustavohb/box-jump/releases/download/0.1/Box.Jump.0.1.MacOS.zip)) or just go [here](https://gustavohb.github.io/box-jump/) to directly play it in your browser.
+
+[![google-play-badge](https://user-images.githubusercontent.com/3193712/106179100-55999e00-6179-11eb-8480-d36b11fb9bea.png)](https://play.google.com/store/apps/details?id=com.GustavoH.Barrionuevo.BoxJump)
 
 I didn't come up with the idea of this game. The original game concept was created by [Thomas Palef](http://www.lessmilk.com/game/box-jump/). I simply made a version in Unity of his game with some slightly different levels.
 
