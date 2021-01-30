@@ -9,7 +9,7 @@ public static class GameTime
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager s_Instance;
+    private static GameManager _instance;
 
     public int targetFrameRate = 60;
 
@@ -27,23 +27,52 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private IntVariable _currentLevelIndex = default;
 
+    [SerializeField] private GameEvent _levelFinishedEvent = default;
+
 
     public static GameManager Instance
     {
         get
         {
-            if (s_Instance == null)
+            if (_instance == null)
             {
-                s_Instance = FindObjectOfType<GameManager>();
-                if (s_Instance == null)
+                _instance = FindObjectOfType<GameManager>();
+                if (_instance == null)
                 {
                     GameObject obj = new GameObject();
-                    s_Instance = obj.AddComponent<GameManager>();
+                    _instance = obj.AddComponent<GameManager>();
                 }
             }
 
-            return s_Instance;
+            return _instance;
         }
+    }
+
+    private void Awake()
+    {
+        if (_instance == null)
+        {
+            _instance = this;
+            _currentLevelIndex.Value = PlayerPrefs.GetInt("currentLevel");
+
+            _totalDeaths.Value = PlayerPrefs.GetInt("totalDeaths");
+
+            Application.targetFrameRate = targetFrameRate;
+
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        else
+        {
+            if (this != _instance)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+    }
+
+    private void Start()
+    {
+        _levelFinishedEvent.AddListener(SaveGame);
     }
 
     public void SetTimeScale(float newTimeScale)
@@ -82,32 +111,16 @@ public class GameManager : MonoBehaviour
         _totalDeaths.Value = 0;
     }
 
-    private void Awake()
-    {
-        if (s_Instance == null)
-        {
-            s_Instance = this;
-            _currentLevelIndex.Value = PlayerPrefs.GetInt("currentLevel");
-           
-            _totalDeaths.Value = PlayerPrefs.GetInt("totalDeaths");
 
-            Application.targetFrameRate = targetFrameRate;
-
-            DontDestroyOnLoad(transform.gameObject);
-        }
-        else
-        {
-            if (this != s_Instance)
-            {
-                Destroy(this.gameObject);
-            }
-        }
-    }
-
-    private void OnApplicationQuit()
+    private void SaveGame()
     {
         PlayerPrefs.SetInt("totalDeaths", _totalDeaths.Value);
         PlayerPrefs.SetInt("currentLevel", _currentLevelIndex.Value);
         PlayerPrefs.Save();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveGame();
     }
 }

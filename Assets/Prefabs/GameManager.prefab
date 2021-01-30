@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f8bc47bab38e48f593b74a4ba1cc6e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetFrameRate: 60
+  targetFrameRate: 30
   _totalDeaths: {fileID: 11400000, guid: be2d2f5cf75bd4eb893e486d155ab18e, type: 2}
   _currentLevelIndex: {fileID: 11400000, guid: f2e33d345fc85464e8b7be0bf55ff81b, type: 2}
+  _levelFinishedEvent: {fileID: 11400000, guid: f6dc60cddef9d4fa2bc1a13739c27160,
+    type: 2}
