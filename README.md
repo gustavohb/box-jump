@@ -13,7 +13,7 @@ Touch the screen or press space to let box jump over intactly. If you failed, yo
 
 I didn't come up with the idea of this game. The original game concept was created by [Thomas Palef](http://www.lessmilk.com/game/box-jump/). I simply made a version in Unity of his game with some slightly different levels.
 
-*Used Unity Version: 2019.3*
+*Used Unity Version: 2019.4.18f1*
 
 ## Screenshots
 
